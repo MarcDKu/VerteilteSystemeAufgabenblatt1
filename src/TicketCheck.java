@@ -1,7 +1,7 @@
 import java.io.*;
 public class TicketCheck {
 
-  public static Ticket[] liesTicketsAus (String dateiname) {
+  public static Ticket[] liesTicketsAus (String dateiname) { //.dat readout
     try {
       FileInputStream datEin = new FileInputStream(dateiname);
       ObjectInputStream oEin = new ObjectInputStream(datEin);

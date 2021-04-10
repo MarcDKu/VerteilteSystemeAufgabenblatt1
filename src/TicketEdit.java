@@ -1,9 +1,11 @@
 import java.io.*;
 public class TicketEdit {
-  public static void main (String[] summand) {
+  public static void main (String[] summand) { //save ticket objects in .dat
     try {
+
+      File file = new File("C:\\Users\\Marc\\CodingPlace\\verteilteSysteme\\Aufgabenblatt1\\src\\testdaten.txt");
       BufferedReader ein = new BufferedReader(
-                                 new InputStreamReader(System.in));
+                                  new FileReader(file));
       String dateiname = "Tickets.dat";
       FileOutputStream datAus = new FileOutputStream(dateiname);
       ObjectOutputStream oAus = new ObjectOutputStream(datAus);
