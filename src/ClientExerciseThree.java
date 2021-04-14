@@ -17,7 +17,7 @@ public class ClientExerciseThree {
 
     public static void main(String[] args) throws ClassNotFoundException {
         try {
-            Socket socket = new Socket("localhost", 9898);
+            Socket socket = new Socket("localhost", 9898); //create Socket
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
             Scanner scanner = new Scanner(System.in);
             DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());
@@ -32,7 +32,7 @@ public class ClientExerciseThree {
                 Long input;
 
                 try {
-                    input = scanner.nextLong();
+                    input = scanner.nextLong(); //try to put the Input inside of an Long Variable, if it's not an Long, there is an Error thrown, because its not an CCustomer Number
 
                 } catch (Exception e) {
                     input = null;
@@ -41,10 +41,11 @@ public class ClientExerciseThree {
                     System.out.println("│        Das ist keine valide Kundennummer!          │");
                     System.out.println("└────────────────────────────────────────────────────┘");
                 }
-                outputStream.writeLong(input);
-                if (input != -1) {
+                if (input != -1) { //if the Input is not -1 (which is used to exit the whole thing), then the System sends out an Output to the Server, which returns the Objects inside of an Array List
+                    outputStream.writeLong(input);
+
                     ArrayList<Ticket> foundTickets = (ArrayList<Ticket>) inputStream.readObject();
-                    if (foundTickets.isEmpty()) {
+                    if (foundTickets.isEmpty()) { //the Array list is Empty, when there is no data to recover
                         System.out.println("┌────────────────────────────────────────────────────┐");
                         System.out.println("│       Leider wurde kein Ergebnis gefunden.         │");
                         System.out.println("└────────────────────────────────────────────────────┘");

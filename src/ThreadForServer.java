@@ -20,7 +20,7 @@ public class ThreadForServer extends Thread {
 
     public ThreadForServer(Socket socket) {
         try {
-            this.socket = socket;
+            this.socket = socket; //try's whether or not the element is a Socket, if yes it increases the current client Number
             clientNumber++;
 
             Input = new DataInputStream(socket.getInputStream());
@@ -34,23 +34,19 @@ public class ThreadForServer extends Thread {
     public void run() {
         try {
             do {
-                long customerNumber = Input.readLong();
-                if (customerNumber != -1) {
-                    Ticket[] loadedTickets = TicketCheck.liesTicketsAus("Tickets.dat");
-                    ArrayList<Ticket> tobeSent = new ArrayList<>();
+                long customerNumber = Input.readLong();  //get the current Input
+
+                    Ticket[] loadedTickets = TicketCheck.liesTicketsAus("Tickets.dat"); //load all Tickets within the Array
+                    ArrayList<Ticket> tobeSent = new ArrayList<>(); //creates new Array List
                     for (Ticket ticket : loadedTickets) {
                         if (ticket.getKdNr() == customerNumber) {
-                            tobeSent.add(ticket);
+                            tobeSent.add(ticket); //add ticket to the Array List
                         }
                     }
                     Output.writeObject(tobeSent);
-                } else {
-                    break;
-                }
+
             } while (true);
-            Input.close();
-            Output.close();
-            socket.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }

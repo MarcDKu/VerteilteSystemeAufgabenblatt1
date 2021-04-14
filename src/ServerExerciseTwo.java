@@ -15,7 +15,7 @@ public class ServerExerciseTwo {
         try {
             ServerSocket Server = new ServerSocket(9898);
             do {
-                new ThreadForServer(Server.accept()).start();
+                new ThreadForServer(Server.accept()).start(); //create a New Thread on the Server, with the Socket as 9898
             } while (true);
         } catch (IOException e) {
             e.printStackTrace();
