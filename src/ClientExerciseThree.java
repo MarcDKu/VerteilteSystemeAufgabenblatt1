@@ -1,3 +1,11 @@
+/*
+┌────────────────────────────────────────────────────┐
+│                   Kurs: WWI2019A                   │
+│────────────────────────────────────────────────────│
+│              Student: Marc Kustermann              │
+└────────────────────────────────────────────────────┘
+*/
+
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -11,8 +19,9 @@ public class ClientExerciseThree {
         try {
             Socket socket = new Socket("localhost", 9898);
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
-            DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());
             Scanner scanner = new Scanner(System.in);
+            DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());
+
             System.out.println("┌────────────────────────────────────────────────────┐");
             System.out.println("│     Bitte geben Sie eine Kundennummer ein!         │");
             System.out.println("│────────────────────────────────────────────────────│");
@@ -26,36 +35,39 @@ public class ClientExerciseThree {
                     input = scanner.nextLong();
 
                 } catch (Exception e) {
+                    input = null;
                     scanner.next();
-                    input = 1L;
                     System.out.println("┌────────────────────────────────────────────────────┐");
                     System.out.println("│        Das ist keine valide Kundennummer!          │");
                     System.out.println("└────────────────────────────────────────────────────┘");
                 }
                 outputStream.writeLong(input);
                 if (input != -1) {
-                    ArrayList<Ticket> ticketArrayList = (ArrayList<Ticket>) inputStream.readObject();
-                    if (ticketArrayList.isEmpty()) {
+                    ArrayList<Ticket> foundTickets = (ArrayList<Ticket>) inputStream.readObject();
+                    if (foundTickets.isEmpty()) {
                         System.out.println("┌────────────────────────────────────────────────────┐");
                         System.out.println("│       Leider wurde kein Ergebnis gefunden.         │");
                         System.out.println("└────────────────────────────────────────────────────┘");
                     } else {
                         System.out.println("┌────────────────────────────────────────────────────┐");
-                        System.out.println("│   Folgende Tickets hat die Kundennummer "+ input + ":   │");
+                        System.out.println("│  Folgende Tickets haben die Kundennummer "+ input + ":  │");
                         System.out.println("└────────────────────────────────────────────────────┘");
-                        for (Ticket ticket : ticketArrayList) {
-                            System.out.println(ticket.toString());
+                        for (Ticket singleTicket : foundTickets) {
+                            System.out.println(singleTicket.toString());
                         }
                     }
                 } else break;
 
             }
-            scanner.close();
-            inputStream.close();
-            outputStream.close();
             socket.close();
+            inputStream.close();
+            scanner.close();
+            outputStream.close();
 
         } catch (IOException e) {
+            System.out.println("┌────────────────────────────────────────────────────┐");
+            System.out.println("│           Es ist ein Fehler aufgetreten!           │");
+            System.out.println("└────────────────────────────────────────────────────┘");
             e.printStackTrace();
         }
     }

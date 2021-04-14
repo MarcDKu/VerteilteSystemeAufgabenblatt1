@@ -1,3 +1,11 @@
+/*
+┌────────────────────────────────────────────────────┐
+│                   Kurs: WWI2019A                   │
+│────────────────────────────────────────────────────│
+│              Student: Marc Kustermann              │
+└────────────────────────────────────────────────────┘
+*/
+
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;

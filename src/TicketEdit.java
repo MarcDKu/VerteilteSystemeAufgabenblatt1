@@ -1,3 +1,11 @@
+/*
+┌────────────────────────────────────────────────────┐
+│                   Kurs: WWI2019A                   │
+│────────────────────────────────────────────────────│
+│              Student: Marc Kustermann              │
+└────────────────────────────────────────────────────┘
+*/
+
 import java.io.*;
 public class TicketEdit {
   public static void main (String[] summand) { //save ticket objects in .dat

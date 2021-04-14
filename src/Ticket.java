@@ -1,3 +1,11 @@
+/*
+┌────────────────────────────────────────────────────┐
+│                   Kurs: WWI2019A                   │
+│────────────────────────────────────────────────────│
+│              Student: Marc Kustermann              │
+└────────────────────────────────────────────────────┘
+*/
+
 import java.io.*;
 import java.util.*;
 public class Ticket implements Serializable {

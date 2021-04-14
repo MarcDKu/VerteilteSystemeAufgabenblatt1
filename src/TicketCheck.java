@@ -1,3 +1,11 @@
+/*
+┌────────────────────────────────────────────────────┐
+│                   Kurs: WWI2019A                   │
+│────────────────────────────────────────────────────│
+│              Student: Marc Kustermann              │
+└────────────────────────────────────────────────────┘
+*/
+
 import java.io.*;
 public class TicketCheck {
 
@@ -30,8 +38,8 @@ public class TicketCheck {
 
     System.out.println("Die Datei " + dateiname + " enthaelt " + 
                         gut.length + " Tickets");
-    for (int i=0; i<gut.length; i++) {
-      System.out.println(gut[i]);
+    for (Ticket ticket : gut) {
+      System.out.println(ticket);
     }
   }
 }
