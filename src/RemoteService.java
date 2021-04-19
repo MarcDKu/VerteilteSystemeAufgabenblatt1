@@ -6,20 +6,10 @@
 └────────────────────────────────────────────────────┘
 */
 
-import java.io.IOException;
-import java.net.ServerSocket;
+import java.rmi.*;
+import java.util.ArrayList;
 
+public interface RemoteService extends Remote { //create Interface, which contains getActiveTickets
+    ArrayList<Ticket> getActiveTickets(long customerNumber) throws RemoteException ;
 
-public class ServerExerciseTwo {
-    public static void main(String[] args) {
-        try {
-            ServerSocket Server = new ServerSocket(9898);
-            do {
-                new ThreadForServer(Server.accept()).start(); //create a New Thread on the Server, with the Socket as 9898
-            } while (true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
-}
-
